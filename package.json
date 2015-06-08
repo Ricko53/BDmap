@@ -1,0 +1,23 @@
+{
+  "name": "BDmap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./bulid -a localhost -p 8000 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TommyHili/BDmap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TommyHili/BDmap/issues"
+  },
+  "homepage": "https://github.com/TommyHili/BDmap",
+  "devDependencies": {
+    "http-server": "^0.8.0"
+  }
+}
