@@ -11,6 +11,11 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KlX7E9HGBgX3V3x1VkBlFgNp"></script>
+  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/jquery.min.js"></script>
+  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/handlebars.js"></script>
+  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember.js"></script>
+  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember-data.js"></script>
+  <script src="js/main2.js"></script>
 </head>
 
 <body>
@@ -18,9 +23,7 @@
         {{outlet}}
       </script>
       <script type="text/x-handlebars" data-template-name="index">
-      {{#if selectedLocation}}
-          {{baidu-maps }}
-      {{/if}}
+          {{baidu-maps}}
       </script>
       <script type="text/x-handlebars" id="components/baidu-maps">
         <div id="allmap"></div>
@@ -29,12 +32,6 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ember.js/1.11.3/ember-template-compiler.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.16.1/ember-data.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.amd.js"></script> -->
-
-  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/jquery.min.js"></script>
-  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/handlebars.js"></script>
-  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember.js"></script>
-  <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember-data.js"></script>
-  <script src="js/main2.js"></script>
   <!-- <script src="js/map-contorl.js"></script> -->
 </body>
 

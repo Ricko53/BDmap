@@ -6,11 +6,7 @@ App.Router.map(function() {
 
 App.IndexRoute = Ember.Route.extend({
   model: function() {
-    return {
-      locathons: [
-        { id : }
-      ]
-    }
+   
   }
 });
 
@@ -44,6 +40,13 @@ App.BaiduMapsComponent = Ember.Component.extend({
       console.log(p.getPosition().lng + "," + p.getPosition().lat);
       alert("点击的位置是" + p.getPosition().lng + "," + p.getPosition().lat);    
     }
+
+  //   var options = {
+  //   center: new BMap.Point(121.462,31.256),
+  //   zoom : 13
+  // }
+  
+  // this.set('map', new BMap.Map("allmap").centerAndZoom(options.center,options.zoom));
 
   }.on('didInsertElement')
 });
