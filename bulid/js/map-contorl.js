@@ -1,58 +1,102 @@
+var App;
+
 App = Ember.Application.create();
-
-App.Router.map(function() {
-  this.route('posts.new');
-});
-
-App.ApplicationAdapter = DS.FixtureAdapter.extend({});
-
-App.Post = DS.Model.extend({
-  title: DS.attr('string'),
-  description: DS.attr('string'),
-  createdAt: DS.attr('date')
-  
-});
-
-App.Post.FIXTURES = [
-  {
-    id: 1,
-    title: 'Emberjs yo',
-    description: 'awesome stuff',
-    createdAt: new Date(2014, 4, 1)
-    },
-  {
-    id: 2,
-    title: 'Omakase Rails! ',
-    description: 'cool stuff',
-    createdAt: new Date(2014, 5, 1)
-  },
-  {
-    id: 3,
-    title: 'yo! omakase emberjs rails',
-    description: 'awesome cool stuff',
-    createdAt: new Date(2014, 4, 20)
-  }
-];
 
 App.IndexRoute = Ember.Route.extend({
   model: function() {
-    return this.store.find('post');
+    return Ember.A([
+      {
+        id: 1,
+        firstName: 'Bram',
+        lastName: 'Moolenaar',
+        knownFor: "Vim"
+      }, {
+        id: 2,
+        firstName: 'Richard',
+        lastName: 'Stallman',
+        knownFor: "GNU"
+      }, {
+        id: 3,
+        firstName: 'Dennis',
+        lastName: 'Ritchie',
+        knownFor: "C"
+      }, {
+        id: 4,
+        firstName: 'Rich',
+        lastName: 'Hickey',
+        knownFor: "Clojure"
+      }, {
+        id: 5,
+        firstName: 'Guido',
+        lastName: 'Van Rossum',
+        knownFor: "Python"
+      }, {
+        id: 6,
+        firstName: 'Linus',
+        lastName: 'Torvalds',
+        knownFor: "Linux"
+      }, {
+        id: 7,
+        firstName: 'Yehuda',
+        lastName: 'Katz',
+        knownFor: "Ember"
+      }
+    ]);
   }
 });
 
 App.IndexController = Ember.ArrayController.extend({
-  results: function(){
-    var searchTerm = this.get('searchTerm'),
-        posts      = this.get('content');
-   if(searchTerm){
-     
-     return posts.filter(function(post){
-       return post.get('title').toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-     });
-   }
-     else{
-     return posts;  
-     }
-     
-  }.property('content', 'searchTerm')
+  sortProperties: ['id'],
+  sortAscending: true,
+  theFilter: "",
+  checkFilterMatch: function(theObject, str) {
+    var field, match;
+    match = false;
+    for (field in theObject) {
+      if (theObject[field].toString().slice(0, str.length) === str) {
+        match = true;
+      }
+    }
+    return match;
+  },
+  filterPeople: (function() {
+    return this.get("arrangedContent").filter((function(_this) {
+      return function(theObject, index, enumerable) {
+        if (_this.get("theFilter")) {
+          return _this.checkFilterMatch(theObject, _this.get("theFilter"));
+        } else {
+          return true;
+        }
+      };
+    })(this));
+  }).property("theFilter", "sortProperties", "sortAscending"),
+  sortedOnID: (function() {
+    return this.get("sortProperties").get("0") === "id";
+  }).property("sortProperties"),
+  sortedOnFirstName: (function() {
+    return this.get("sortProperties").get("0") === "firstName";
+  }).property("sortProperties"),
+  sortedOnLastName: (function() {
+    return this.get("sortProperties").get("0") === "lastName";
+  }).property("sortProperties"),
+  sortedOnKnownFor: (function() {
+    return this.get("sortProperties").get("0") === "knownFor";
+  }).property("sortProperties"),
+  glyphiconDirection: (function() {
+    if (this.get("sortAscending")) {
+      return "glyphicon-chevron-down";
+    } else {
+      return "glyphicon-chevron-up";
+    }
+  }).property("sortAscending"),
+  actions: {
+    sortBy: function(property) {
+      if (this.get("sortProperties")[0] === property) {
+        this.toggleProperty("sortAscending");
+      } else {
+        this.set("sortAscending", true);
+        this.set("sortProperties", [property]);
+      }
+    }
+  }
 });

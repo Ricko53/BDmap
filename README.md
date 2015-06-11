@@ -7,3 +7,5 @@
     npm start
 
 浏览器打开localhost:8000
+
+###v2 join the Ember.js

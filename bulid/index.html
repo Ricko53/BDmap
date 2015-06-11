@@ -10,28 +10,21 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
-  <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KlX7E9HGBgX3V3x1VkBlFgNp"></script> -->
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KlX7E9HGBgX3V3x1VkBlFgNp"></script>
 </head>
 
 <body>
-    <div id="allmap"></div>
-    <div id="ma-nav">
-    <div >
       <script type="text/x-handlebars">
-        <h2> Welcome to Ember.js</h2>
-
         {{outlet}}
       </script>
-
       <script type="text/x-handlebars" data-template-name="index">
-        {{input value=searchTerm placeholder="Enter title to search"}}
-            {{#each results}}
-              <h3>{{title}}</h3>
-              <p>{{description}}</p>
-            {{/each}}
-
+      {{#if selectedLocation}}
+          {{baidu-maps }}
+      {{/if}}
       </script>
-    </div>
+      <script type="text/x-handlebars" id="components/baidu-maps">
+        <div id="allmap"></div>
+      </script>
    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ember.js/1.11.3/ember-template-compiler.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.16.1/ember-data.js"></script>
@@ -41,8 +34,8 @@
   <script src="http://emberjs.com.s3.amazonaws.com/getting-started/handlebars.js"></script>
   <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember.js"></script>
   <script src="http://emberjs.com.s3.amazonaws.com/getting-started/ember-data.js"></script>
-  <!-- <script src="js/main.js"></script> -->
-  <script src="js/map-contorl.js"></script>
+  <script src="js/main2.js"></script>
+  <!-- <script src="js/map-contorl.js"></script> -->
 </body>
 
 </html>

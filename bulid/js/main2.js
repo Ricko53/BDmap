@@ -1,14 +1,29 @@
-(function(){
-    // 百度地图API功能
+App = Ember.Application.create();
+
+App.Router.map(function() {
+  // put your routes here
+});
+
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return {
+      locathons: [
+        { id : }
+      ]
+    }
+  }
+});
+
+App.BaiduMapsComponent = Ember.Component.extend({
+  insertMap: function() {
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(121.462,31.256);
-     //右上角，添加默认缩放平移控件
-    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT});                     
+    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT});  
+
     map.centerAndZoom(point, 13);
     map.addControl(top_right_navigation);  
-    map.enableScrollWheelZoom(true);                                                 // 开启滚轮模式
+    map.enableScrollWheelZoom(true);
 
-    // 创建Json坐标集合，可以通过Ajax从后台获取
     var json_data = [[121.462,31.253],[121.462,31.254],[121.447,31.261],[121.464,31.255],[121.463,31.257],[121.461848,31.25566],[121.46598,31.253407],[121.457932,31.252511],[121.463681,31.249995],[121.468136,31.252187],[121.468136,31.252187],[121.455991,31.254256]];
 
 
@@ -28,5 +43,7 @@
       var p = e.target;
       console.log(p.getPosition().lng + "," + p.getPosition().lat);
       alert("点击的位置是" + p.getPosition().lng + "," + p.getPosition().lat);    
-    } 
-})();
+    }
+
+  }.on('didInsertElement')
+});
